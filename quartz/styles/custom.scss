@@ -1,3 +1,19 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// Always render Mermaid in light mode; in dark mode, give it a light background
+// and force dark text so the diagram stays readable.
+[saved-theme="dark"] pre:has(> code.mermaid) {
+  background-color: #faf8f8;
+  border-radius: 8px;
+  padding: 1rem;
+
+  // SVG text elements (edge labels, etc.)
+  text {
+    fill: #4e4e4e !important;
+  }
+
+  // HTML text inside foreignObject (node labels in Mermaid v11)
+  * {
+    color: #4e4e4e !important;
+  }
+}

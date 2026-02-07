@@ -219,28 +219,20 @@ document.addEventListener("nav", async () => {
       {} as Record<(typeof cssVars)[number], string>,
     )
 
-    const darkMode = document.documentElement.getAttribute("saved-theme") === "dark"
     mermaid.initialize({
       startOnLoad: false,
       securityLevel: "loose",
-      theme: darkMode ? "dark" : "base",
+      theme: "base",
       themeVariables: {
         fontFamily: computedStyleMap["--codeFont"],
-        primaryColor: computedStyleMap["--light"],
-        primaryTextColor: darkMode ? computedStyleMap["--light"] : computedStyleMap["--darkgray"],
-        primaryBorderColor: computedStyleMap["--tertiary"],
-        lineColor: computedStyleMap["--darkgray"],
-        secondaryColor: computedStyleMap["--secondary"],
-        tertiaryColor: computedStyleMap["--tertiary"],
-        clusterBkg: computedStyleMap["--light"],
-        edgeLabelBackground: computedStyleMap["--highlight"],
-        // Dark mode overrides for better contrast
-        ...(darkMode && {
-          primaryColor: computedStyleMap["--darkgray"],
-          primaryTextColor: computedStyleMap["--light"],
-          secondaryColor: computedStyleMap["--dark"],
-          tertiaryColor: computedStyleMap["--darkgray"],
-        }),
+        primaryColor: "#faf8f8",
+        primaryTextColor: "#4e4e4e",
+        primaryBorderColor: "#84a59d",
+        lineColor: "#4e4e4e",
+        secondaryColor: "#284b63",
+        tertiaryColor: "#84a59d",
+        clusterBkg: "#faf8f8",
+        edgeLabelBackground: "rgba(143, 159, 169, 0.15)",
       },
     })
 
