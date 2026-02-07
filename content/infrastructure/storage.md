@@ -34,17 +34,27 @@ Data persistence strategy using ZFS and bind mounts for LXC containers.
 
 ## Architecture
 
-```
-Proxmox Host                    LXC Container
-┌─────────────────┐             ┌─────────────────┐
-│ /lxcdata/n8n/   │ bind mount │ /data/          │
-│ └── config/     │────────────→│ └── config/     │
-│ └── data/       │             │   └── n8n/      │
-│                 │             │                 │
-│ /lxcdata/planka/│ bind mount │ /data/          │
-│ └── postgres/   │────────────→│ └── postgres/  │
-│                 │             │                 │
-└─────────────────┘             └─────────────────┘
+```mermaid
+graph LR
+    subgraph Host["Proxmox Host"]
+        N8["/lxcdata/n8n/<br/>└── config/<br/>└── data/"]
+        PL["/lxcdata/planka/<br/>└── postgres/"]
+    end
+
+    subgraph CT["LXC Container"]
+        D1["/data/<br/>└── config/<br/>   └── n8n/"]
+        D2["/data/<br/>└── postgres/"]
+    end
+
+    N8 --"bind mount"--> D1
+    PL --"bind mount"--> D2
+
+    style Host fill:#e3f2fd
+    style CT fill:#fff3e0
+    style N8 fill:#ffffff
+    style PL fill:#ffffff
+    style D1 fill:#ffffff
+    style D2 fill:#ffffff
 ```
 
 ## ZFS Benefits

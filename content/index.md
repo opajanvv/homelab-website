@@ -18,19 +18,16 @@ Complete documentation for the home lab running on Proxmox VE. Everything needed
 
 ### Architecture Overview
 
-```
-                    ┌─────────────────┐
-                    │   Proxmox Host   │
-                    │    192.168.144.10  │
-                    └────────┬─────────┘
-                             │
-        ┌────────────────────┼────────────────────┐
-        │                    │                    │
-   ┌────▼────┐        ┌─────▼──────┐      ┌─────▼──────┐
-   │   LXC    │        │     LXC     │      │     VM     │
-   │ Services │        │  Services   │      │  Services  │
-   │ (Docker) │        │  (Docker)   │      │  (Native)  │
-   └──────────┘        └─────────────┘      └────────────┘
+```mermaid
+graph TB
+    P[Proxmox Host<br/>192.168.144.10] --> L1[LXC Services<br/>Docker]
+    P --> L2[LXC Services<br/>Docker]
+    P --> V[VM Services<br/>Native]
+
+    style P fill:#e1f5fe
+    style L1 fill:#fff3e0
+    style L2 fill:#fff3e0
+    style V fill:#f3e5f5
 ```
 
 **Access Pattern:**
