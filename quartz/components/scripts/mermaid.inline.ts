@@ -227,13 +227,20 @@ document.addEventListener("nav", async () => {
       themeVariables: {
         fontFamily: computedStyleMap["--codeFont"],
         primaryColor: computedStyleMap["--light"],
-        primaryTextColor: computedStyleMap["--darkgray"],
+        primaryTextColor: darkMode ? computedStyleMap["--light"] : computedStyleMap["--darkgray"],
         primaryBorderColor: computedStyleMap["--tertiary"],
         lineColor: computedStyleMap["--darkgray"],
         secondaryColor: computedStyleMap["--secondary"],
         tertiaryColor: computedStyleMap["--tertiary"],
         clusterBkg: computedStyleMap["--light"],
         edgeLabelBackground: computedStyleMap["--highlight"],
+        // Dark mode overrides for better contrast
+        ...(darkMode && {
+          primaryColor: computedStyleMap["--darkgray"],
+          primaryTextColor: computedStyleMap["--light"],
+          secondaryColor: computedStyleMap["--dark"],
+          tertiaryColor: computedStyleMap["--darkgray"],
+        }),
       },
     })
 
